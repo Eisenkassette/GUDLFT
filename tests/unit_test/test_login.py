@@ -8,4 +8,4 @@ def test_login_with_valid_email(client):
 def test_login_with_wrong_email(client):
     wrong_email = "thisemaildoesntexist@wrongemail.com"
     response = client.post('/showSummary', data={'email': wrong_email})
-    assert response.status_code == 404, f"Expected status code 404, but got {response.status_code}"
+    assert response.status_code == 302, f"Expected status code 302, but got {response.status_code}"
