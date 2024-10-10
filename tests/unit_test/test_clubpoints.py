@@ -1,13 +1,10 @@
 import pytest
 
-def test_over_booking(client, mocker, mock_clubs, mock_competitions):
-    mocker.patch('server.loadClubs', return_value=mock_clubs)
-    mocker.patch('server.loadCompetitions', return_value=mock_competitions)
+def test_over_booking(client):
+    loggedinclub_name = 'Simply Lift'
+    competition_name = 'Fall Classic'
 
-    loggedinclub_name = mock_clubs[0]['name']
-    competition_name = mock_competitions[0]['name']
-
-    places_to_book = int(mock_clubs[0]['points']) + 1
+    places_to_book = 14
 
     # POST request to the purchasePlaces endpoint
     response = client.post('/purchasePlaces', data={
@@ -19,12 +16,9 @@ def test_over_booking(client, mocker, mock_clubs, mock_competitions):
     assert response.status_code == 403, f"Expected status code 403, but got {response.status_code}"
 
 
-def test_booking(client, mocker, mock_clubs, mock_competitions):
-    mocker.patch('server.loadClubs', return_value=mock_clubs)
-    mocker.patch('server.loadCompetitions', return_value=mock_competitions)
-
-    loggedinclub_name = mock_clubs[0]['name']
-    competition_name = mock_competitions[0]['name']
+def test_booking(client):
+    loggedinclub_name = 'Simply Lift'
+    competition_name = 'Fall Classic'
 
     places_to_book = 12
 
