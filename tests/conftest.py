@@ -20,3 +20,4 @@ def mock_data(mocker):
     ]
     mocker.patch('server.clubs', mock_clubs)
     mocker.patch('server.competitions', mock_competitions)
+    return {"clubs": mock_clubs, "competitions": mock_competitions}
