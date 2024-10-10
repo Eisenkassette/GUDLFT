@@ -52,6 +52,8 @@ def book(competition,club):
     if foundClub and foundCompetition:
         current_date = datetime.now()
         competition_date = datetime.strptime(foundCompetition['date'], '%Y-%m-%d %H:%M:%S')
+        # Added a verification that checks if the competition has already taken place.
+        # If the competition is a past one, sends back to welcome.html with an error message.
         if current_date > competition_date:
             flash("That competition is over.")
             return render_template('welcome.html', club=club, competitions=competitions), 403
@@ -78,7 +80,10 @@ def purchasePlaces():
         flash('You cannot book more than 12 places', 'error')
         return redirect(request.referrer), 403
     else:
-        competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
+        competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - placesRequired
+        # Added an update section for the club points.
+        club_points = int(club['points'])
+        club['points'] = str(club_points - placesRequired)
         flash('Great-booking complete!')
         return render_template('welcome.html', club=club, competitions=competitions)
 
