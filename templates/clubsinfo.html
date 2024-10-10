@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubs Info | GUDLFT</title>
+</head>
+<body>
+    <h2>Clubs Information</h2>
+    
+    <ul style="list-style-type: none;">
+        {% for club in clubs %}
+        <hr />
+        <li>
+            Club Name: {{club['name']}}<br />
+            Points Available: {{club['points']}}
+        </li>
+        {% endfor %}
+        <hr />
+    </ul>
+    
+    <!-- Return Button to go back to welcome page -->
+    <a href="javascript:history.back()">Return</a>
+    
+</body>
+</html>
