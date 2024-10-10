@@ -65,10 +65,14 @@ def purchasePlaces():
     if placesRequired > int(club['points']):
         flash('You do not have a sufficient amount of points.', 'error')
         return redirect(request.referrer), 403
-    
-    competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
-    flash('Great-booking complete!')
-    return render_template('welcome.html', club=club, competitions=competitions)
+    # Aded a check in the case were the user tries to book more than 12 places redirect with error.
+    elif placesRequired > 12:
+        flash('You cannot book more than 12 places', 'error')
+        return redirect(request.referrer), 403
+    else:
+        competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
+        flash('Great-booking complete!')
+        return render_template('welcome.html', club=club, competitions=competitions)
 
 
 # TODO: Add route for points display
