@@ -26,7 +26,7 @@ def test_booking(client, mocker, mock_clubs, mock_competitions):
     loggedinclub_name = mock_clubs[0]['name']
     competition_name = mock_competitions[0]['name']
 
-    places_to_book = int(mock_clubs[0]['points'])
+    places_to_book = 12
 
     # POST request to the purchasePlaces endpoint
     response = client.post('/purchasePlaces', data={
