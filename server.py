@@ -26,7 +26,20 @@ def index():
 
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
+    # Replaced full list search with next(), advantages:
+    # - When a club with a matching email is found we stop scanning, making it more efficient
+    # by reducing the amount of useless operations as one email should be unique to a club.
+    # - If no matchs a found we won't get an index error, club will simple be equal to None
+    # making the later check possible.
+    club = next((club for club in clubs if club['email'] == request.form['email']), None)
+
+    # Verification that ensure that we got a matching club to the provided email if not:
+    # - Flash an "email not found" error message.
+    # - Redirect to index.html for the user to see the message.
+    if not club:
+        flash('Email not found. Please try again.', 'error')
+        return redirect(url_for('index'))
+
     return render_template('welcome.html',club=club,competitions=competitions)
 
 
