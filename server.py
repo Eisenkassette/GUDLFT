@@ -59,6 +59,13 @@ def purchasePlaces():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     placesRequired = int(request.form['places'])
+
+    # Added verification that the clubs has not asked for more places than they have points
+    # If they don't have enough points the user is redirected to the booking page.
+    if placesRequired > int(club['points']):
+        flash('You do not have a sufficient amount of points.', 'error')
+        return redirect(request.referrer), 403
+    
     competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
     flash('Great-booking complete!')
     return render_template('welcome.html', club=club, competitions=competitions)
