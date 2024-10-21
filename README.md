@@ -7,10 +7,10 @@ This README will guide you through the process of setting up, running, and testi
 ### Steps to start the app:
 
 1. **Clone the Repository:**
-   Download or clone the Git repository:
+   Download or clone the QA Git repository:
 
    ```bash
-   git clone <repository_url>
+   git clone -b QA https://github.com/Eisenkassette/GUDLFT --single-branch
    ```
 
 2. **Navigate to the Project Directory:**
@@ -24,7 +24,7 @@ This README will guide you through the process of setting up, running, and testi
    Create a virtual environment to isolate the project’s dependencies:
 
    ```bash
-   python3 -m venv venv
+   python -m venv venv
    ```
 
 4. **Activate the Virtual Environment:**
@@ -89,7 +89,7 @@ PYTHONPATH=. pytest -v
 ### Steps to Perform Load Testing:
 
 1. **Ensure the Flask App is Not Running:**
-   The Flask app must **NOT** be running before starting Locust. This is necessary so Locust can properly initialize files.
+   The Flask app must **NOT** be running before starting Locust. This is necessary so Flask can initialize testing json files.
 
 2. **Run Locust:**
    Start the Locust load testing tool with the following command:
@@ -126,20 +126,12 @@ PYTHONPATH=. pytest -v
 
 ## 4. Test Coverage Report
 
-A coverage report is available to analyze the extent of test coverage. After running your tests, you can view the coverage report as follows:
+A coverage report is available to analyze the extent of test coverage.
 
 1. **Locate the Coverage Report:**
-   The report will be generated in the `htmlcov` folder.
+   The report will be in the `htmlcov` folder.
 
 2. **Open the Coverage Report in a Browser:**
-   Open the `index.html` file in your browser to view the report:
-
-   ```bash
-   open htmlcov/index.html
-   ```
+   Open the `index.html` file in your browser to view the report.
 
 This report provides detailed insights into how much of your code is covered by tests.
-
----
-
-By following this guide, you will be able to successfully run and test the GUDLFT booking app. Happy coding!
