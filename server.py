@@ -1,4 +1,6 @@
 import json
+import threading
+import time
 from flask import Flask,render_template,request,redirect,flash,url_for
 # Added datetime to be able to check current against competition date.
 from datetime import datetime
@@ -9,11 +11,27 @@ def loadClubs():
          listOfClubs = json.load(c)['clubs']
          return listOfClubs
 
-
 def loadCompetitions():
     with open('competitions.json') as comps:
          listOfCompetitions = json.load(comps)['competitions']
          return listOfCompetitions
+
+# Function to periodically save data to json
+def periodic_save():
+    while True:
+        time.sleep(60)
+
+        with open('clubs.json', 'w') as clubs_file:
+            json.dump({"clubs": clubs}, clubs_file, indent=4)
+
+        with open('competitions.json', 'w') as competitions_file:
+            json.dump({"competitions": competitions}, competitions_file, indent=4)
+
+        print("Data saved to JSON files.")
+
+def start_background_saving():
+    thread = threading.Thread(target=periodic_save, daemon=True)
+    thread.start()
 
 
 app = Flask(__name__)
@@ -22,9 +40,13 @@ app.secret_key = 'something_special'
 competitions = loadCompetitions()
 clubs = loadClubs()
 
+start_background_saving()
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
