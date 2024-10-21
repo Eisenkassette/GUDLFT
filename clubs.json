@@ -1,16 +1,54 @@
-{"clubs":[
-    {
-        "name":"Simply Lift",
-        "email":"john@simplylift.co",
-        "points":"13"
-    },
-    {
-        "name":"Iron Temple",
-        "email": "admin@irontemple.com",
-        "points":"4"
-    },
-    {   "name":"She Lifts",
-        "email": "kate@shelifts.co.uk",
-        "points":"12"
-    }
-]}
+{
+    "clubs": [
+        {
+            "name": "Simply Lift",
+            "email": "john@simplylift.co",
+            "points": "1255"
+        },
+        {
+            "name": "Iron Temple",
+            "email": "admin@irontemple.com",
+            "points": "1255"
+        },
+        {
+            "name": "She Lifts",
+            "email": "kate@shelifts.co.uk",
+            "points": "1260"
+        },
+        {
+            "name": "Sport Club",
+            "email": "alice@sportclub.com",
+            "points": "1210"
+        },
+        {
+            "name": "Another Club",
+            "email": "Someone@anotherclub.com",
+            "points": "1250"
+        },
+        {
+            "name": "Best Club",
+            "email": "someperson@bestclub.com",
+            "points": "1250"
+        },
+        {
+            "name": "Club 999",
+            "email": "Bob@club999.com",
+            "points": "1195"
+        },
+        {
+            "name": "Club of club",
+            "email": "Mick@clubofclub.com",
+            "points": "1235"
+        },
+        {
+            "name": "Super Club",
+            "email": "Larry@superclub.com",
+            "points": "1270"
+        },
+        {
+            "name": "Giga Club",
+            "email": "Norton@gigaclub.com",
+            "points": "1170"
+        }
+    ]
+}
